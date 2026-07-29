@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-4 text-dark">
+    <h1 class="fw-bold"><i class="fa-solid fa-magnifying-glass text-info me-2"></i>Search Directory</h1>
+    <p class="text-muted">Find student profiles by Student ID, Name, Department, or Email address.</p>
+</div>
+
+<!-- Dedicated Search Panel -->
+<div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white text-dark">
+    <form method="GET" action="{{ url_for('students.search') }}">
+        <div class="row g-3 align-items-end">
+            <!-- Search Selection -->
+            <div class="col-md-3">
+                <label for="search_by" class="form-label fw-semibold text-secondary small">Search Attribute</label>
+                <select class="form-select border-2" id="search_by" name="search_by">
+                    <option value="name" {{ 'selected' if search_by == 'name' else '' }}>Name</option>
+                    <option value="id" {{ 'selected' if search_by == 'id' else '' }}>Student ID</option>
+                    <option value="department" {{ 'selected' if search_by == 'department' else '' }}>Department</option>
+                    <option value="email" {{ 'selected' if search_by == 'email' else '' }}>Email</option>
+                </select>
+            </div>
+            
+            <!-- Query Input -->
+            <div class="col-md-6">
+                <label for="query" class="form-label fw-semibold text-secondary small">Query text</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-2 border-end-0 text-secondary"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control border-2 border-start-0" id="query" name="query" placeholder="Search keywords..." value="{{ query }}" required>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-dark w-100 py-2.5 fw-semibold"><i class="fa-solid fa-magnifying-glass me-2"></i>Search</button>
+                {% if query %}
+                    <a href="{{ url_for('students.search') }}" class="btn btn-outline-secondary w-50 py-2.5 text-center" title="Clear Search">Clear</a>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Search Results Display -->
+{% if query %}
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white mb-5 text-dark">
+        <div class="card-header bg-dark text-light py-3 px-4 fw-semibold d-flex justify-content-between align-items-center">
+            <span><i class="fa-solid fa-list-check me-2 text-info"></i>Search Results</span>
+            <span class="badge bg-info text-white">{{ matches|length }} matches</span>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="py-3 px-4">Student ID</th>
+                        <th scope="col" class="py-3">Name</th>
+                        <th scope="col" class="py-3 text-center">Age</th>
+                        <th scope="col" class="py-3">Gender</th>
+                        <th scope="col" class="py-3">Department</th>
+                        <th scope="col" class="py-3 text-center">Year</th>
+                        <th scope="col" class="py-3">Email</th>
+                        <th scope="col" class="py-3">Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if matches %}
+                        {% for student in matches %}
+                            <tr>
+                                <td class="px-4"><span class="badge bg-secondary-subtle text-dark border py-2 px-3 fw-bold">{{ student.student_id }}</span></td>
+                                <td class="fw-semibold">{{ student.name }}</td>
+                                <td class="text-center">{{ student.age }}</td>
+                                <td>{{ student.gender }}</td>
+                                <td>{{ student.department }}</td>
+                                <td class="text-center"><span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1.5 fw-medium">Year {{ student.year }}</span></td>
+                                <td>{{ student.email }}</td>
+                                <td>{{ student.phone }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center py-5 text-secondary">
+                                <i class="fa-solid fa-circle-exclamation fs-3 mb-2 d-block"></i>
+                                No student records matched your query string: <strong>"{{ query }}"</strong>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

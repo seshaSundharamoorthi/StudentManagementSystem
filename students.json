@@ -1,0 +1,52 @@
+[
+    {
+        "student_id": "STU1001",
+        "name": "Alice Johnson",
+        "age": 20,
+        "gender": "Female",
+        "department": "Computer Science",
+        "year": 2,
+        "email": "alice.johnson@example.com",
+        "phone": "9876543210"
+    },
+    {
+        "student_id": "STU1002",
+        "name": "Bob Smith",
+        "age": 21,
+        "gender": "Male",
+        "department": "Information Technology",
+        "year": 3,
+        "email": "bob.smith@example.com",
+        "phone": "8765432109"
+    },
+    {
+        "student_id": "STU1003",
+        "name": "Charlie Brown",
+        "age": 19,
+        "gender": "Male",
+        "department": "Electrical Engineering",
+        "year": 1,
+        "email": "charlie.brown@example.com",
+        "phone": "7654321098"
+    },
+    {
+        "student_id": "STU1004",
+        "name": "Diana Prince",
+        "age": 22,
+        "gender": "Female",
+        "department": "Mechanical Engineering",
+        "year": 4,
+        "email": "diana.prince@example.com",
+        "phone": "6543210987"
+    },
+    {
+        "student_id": "STU1005",
+        "name": "Evan Wright",
+        "age": 20,
+        "gender": "Other",
+        "department": "Data Science",
+        "year": 2,
+        "email": "evan.wright@example.com",
+        "phone": "5432109876"
+    }
+]

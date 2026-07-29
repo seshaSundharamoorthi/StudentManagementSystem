@@ -1,0 +1,73 @@
+/*
+style.css
+Custom styling system overlaying Bootstrap 5 for the Student Management System.
+*/
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #f6f8fb;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Custom Navigation Formatting */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.navbar-brand {
+    font-size: 1.4rem;
+}
+.tracking-wide {
+    letter-spacing: 0.5px;
+}
+
+/* Dashboard Analytics Metric Cards */
+.metric-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Metric Colors */
+.bg-light-info {
+    background-color: rgba(13, 202, 240, 0.1);
+}
+.bg-light-success {
+    background-color: rgba(25, 135, 84, 0.1);
+}
+.bg-light-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+/* Directory Layout Styling */
+.table-responsive {
+    border-radius: 12px;
+}
+thead.table-dark th {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+/* Dynamic Inputs Styling */
+.form-control:focus, .form-select:focus {
+    border-color: #0dcaf0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+}
+
+/* Alert formatting block */
+.alerts-container {
+    position: relative;
+    z-index: 1050;
+}
+
+/* Footer layout rules */
+footer.footer {
+    margin-top: auto;
+}
